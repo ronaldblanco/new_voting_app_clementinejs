@@ -10,6 +10,7 @@ var User = new Schema({
 		username: String,
       publicRepos: Number
 	},
+	polls: [{name:String, opt:[{nameopt:String, vote: Number}]}],
    nbrClicks: {
       clicks: Number
    }

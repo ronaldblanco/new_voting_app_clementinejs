@@ -28,12 +28,35 @@
 			<div class="btn-container">
 				<button type="submit" class="btn btn-add">CLICK ME!</button>
 				<button class="btn btn-delete">RESET</button>
+				
+				
+				<br><br>
+			
+			<center>
+			  Poll:<input type="text" name="poll" id="poll"><br>
+              <button type="submit" class="btn btn-add" id ="addpoll">New Poll!</button>
+              <button type="submit" class="btn btn-delete" id ="delpoll">Delete Poll!</button>
+              <ul id="polllist">
+              	<!--<li></li>-->
+              	
+              	</ul>
+              	<br>
+            
+            <form action="/api/poll/addopt" method="post" enctype="multipart/form-data">
+              Option:<input type="text" name="option" id="option"><br>
+              <button type="submit" class="btn btn-add">New Option!</button>
+            </form><br>
+            </center>
+				
+				
+				
 			</div>
 		</div>
 		
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
 		<script type="text/javascript" src="controllers/clickController.client.js"></script>
 		<script type="text/javascript" src="controllers/userController.client.js"></script>
+		<script type="text/javascript" src="controllers/pollController.client.js"></script>
 	</body>
 
 </html>
