@@ -6,6 +6,18 @@
 		<title>Clementine.js - The elegant and lightweight full stack JavaScript boilerplate.</title>
 		
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+		
+		<script type="text/javascript">
+function detect()
+{
+	for(var a = 0; a < radioPoll.length; a++){
+		if (radioPoll[a].checked) document.getElementById("poll").value = radioPoll[a].value;
+	}
+
+}
+</script>
+
+		
 	</head>
 
 	<header>
@@ -36,6 +48,7 @@
 			  Poll:<input type="text" name="poll" id="poll"><br>
               <button type="submit" class="btn btn-add" id ="addpoll">New Poll!</button>
               <button type="submit" class="btn btn-delete" id ="delpoll">Delete Poll!</button>
+              <button type="submit" class="btn btn-delete" id ="onlypoll">Filter Poll!</button>
               <ul id="polllist">
               	<!--<li></li>-->
               	
@@ -51,6 +64,12 @@
               	
               	</ul>
             <br>
+            
+            <input checked="checked" name="radio" type="radio">1-10 years old
+						<input name="radio" type="radio">11 years old 
+						<input name="radio" type="radio">12-120 
+
+            
             </center>
 				
 				

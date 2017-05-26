@@ -22,7 +22,7 @@ Additionally, it will specify what action should be taken when one of the two bu
       //var pollArray = Array.parse(data);
       pollList.innerHTML = '';
       for(var a = 0; a < pollArray.length; a++){
-         pollList.innerHTML = pollList.innerHTML +'<li>'+pollArray[a].name+'</li>';
+         pollList.innerHTML = pollList.innerHTML +'<li><input type="radio" value="' +pollArray[a].name+ '" name="radioPoll" id="radioPoll">'+pollArray[a].name+'</li>';
          //pollList.innerHTML = '<li>'+data+'</li>';
       }
       

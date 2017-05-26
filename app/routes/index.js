@@ -77,4 +77,7 @@ module.exports = function (app, passport) {
 
 	app.route('/api/:id/pollsopt/delopt/*/*')
 		.delete(isLoggedIn, optHandler.resetOpt);
+		
+	app.route('/api/:id/pollsopt/onlypoll/*')
+		.get(isLoggedIn, optHandler.getOptsOnlyPoll);
 };

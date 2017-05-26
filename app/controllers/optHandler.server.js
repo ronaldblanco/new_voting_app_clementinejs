@@ -21,13 +21,31 @@ function OptHandler () {
 				res.json(result.opts);//Array
 			});
 	};
+	
+	this.getOptsOnlyPoll = function (req, res) {
+		var pollName = req.originalUrl.toString().split("/onlypoll/")[1];
+		console.log(pollName);
+		//console.log(req);
+		Users
+			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
+			.exec(function (err, result) {
+				if (err) { throw err; }
+				var fresult = [];
+				for(var a = 0; a < result.opts.length; a++){
+					if(result.opts[a].name == pollName) fresult.push(result.opts[a]);
+				}
+				//res.json(result.opts);//Array
+				res.json(fresult);//Array
+			});
+	};
 
 	this.addOpt = function (req, res) {
 		//console.log(req.originalUrl.toString().split("/add/")[1]);
 		var pollName = req.originalUrl.toString().split("/addopt/")[1].split('/')[0];
 		var optName = req.originalUrl.toString().split("/addopt/")[1].split('/')[1];
-		console.log(pollName);
-		console.log(optName);
+		//console.log(pollName);
+		//console.log(optName);
+		console.log(req.originalUrl);
 		Users
 			.findOneAndUpdate({ 'github.id': req.user.github.id }, { $push: { 'opts': { name:pollName, nameopt:optName, vote:0} } })
 			.exec(function (err, result) {

@@ -10,6 +10,9 @@ Additionally, it will specify what action should be taken when one of the two bu
 (function () {
 
    //VAR
+   var radioPoll = document.querySelector('#radioPoll');
+   var onlyPoll = document.querySelector('#onlypoll');
+   console.log(radioPoll);
    var poll = document.querySelector('#poll');
    var opt = document.querySelector('#opt');
    var addButton = document.querySelector('#addopt');
@@ -17,20 +20,15 @@ Additionally, it will specify what action should be taken when one of the two bu
    var optList = document.querySelector('#optlist');
    var apiUrl = appUrl + '/api/:id/pollsopt';
    
+   
    //FUNCTIONS
    function updatePollOtp (data) {
       var optArray = JSON.parse(data);//.pollList;
-      //console.log(pollArray);
-      //var pollArray = Array.parse(data);
+      
       optList.innerHTML = '';
       for(var a = 0; a < optArray.length; a++){
-         optList.innerHTML = optList.innerHTML +'<li>'+optArray[a].name+'-->'+optArray[a].nameopt+'</li>';
-         //pollList.innerHTML = pollList.innerHTML +'<ul>';
-         //pollList.innerHTML = pollList.innerHTML +'<li>'+pollArray[a].nameopt+'</li>';
-         /*for(var b = 0; b < pollArray[a].opt.length; b++){
-            pollList.innerHTML = pollList.innerHTML +'<li>'+pollArray[a].opt[b].nameopt+'</li>';
-         }*/
-         //pollList.innerHTML = pollList.innerHTML +'</ul>';
+         optList.innerHTML = optList.innerHTML +'<li><input type="radio" value="' +optArray[a].nameopt+ '" name="opts" id="opts">'+optArray[a].name+'-->'+optArray[a].nameopt+'</li>';
+         
       }
       
    }
@@ -41,7 +39,7 @@ Additionally, it will specify what action should be taken when one of the two bu
    //LISTENERS
    addButton.addEventListener('click', function () {
       //console.log(poll.textContent);
-      ajaxFunctions.ajaxRequest('POST', apiUrl+'/addopt/'+poll.value+'/'+opt.value, function () {
+      ajaxFunctions.ajaxRequest('POST', apiUrl+'/addopt/'+poll.value+'/'+opt.value/*+'/'+radioPoll*/, function () {
          ajaxFunctions.ajaxRequest('GET', apiUrl, updatePollOtp);
       });
 
@@ -54,5 +52,10 @@ Additionally, it will specify what action should be taken when one of the two bu
       });
 
    }, false);
+   
+   onlyPoll.addEventListener('click',function(){
+      
+      ajaxFunctions.ajaxRequest('GET', apiUrl+'/onlypoll/'+poll.value/*+'/'+radioPoll*/, updatePollOtp);
+   },false);
 
 })();
