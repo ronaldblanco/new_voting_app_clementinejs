@@ -23,11 +23,11 @@ function PollHandler () {
 	};
 
 	this.addPoll = function (req, res) {
-		console.log(req.originalUrl.toString().split("/add/")[1]);
+		//console.log(req.originalUrl.toString().split("/add/")[1]);
 		var pollName = req.originalUrl.toString().split("/add/")[1];
 		
 		Users
-			.findOneAndUpdate({ 'github.id': req.user.github.id }, { $push: { 'polls': { name:pollName, opt:[]} } })
+			.findOneAndUpdate({ 'github.id': req.user.github.id }, { $push: { 'polls': { name:pollName} } })
 			.exec(function (err, result) {
 					if (err) { throw err; }
 
@@ -38,7 +38,7 @@ function PollHandler () {
 	};
 
 	this.resetPolls = function (req, res) {
-		console.log(req.originalUrl.toString().split("/del/")[1]);
+		//console.log(req.originalUrl.toString().split("/del/")[1]);
 		var pollName = req.originalUrl.toString().split("/del/")[1];
 		Users
 			.findOneAndUpdate({ 'github.id': req.user.github.id }, { $pull: { 'polls': { name:pollName} } })

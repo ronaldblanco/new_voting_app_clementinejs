@@ -3,6 +3,7 @@
 var path = process.cwd();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
 var PollHandler = require(path + '/app/controllers/pollHandler.server.js');
+var OptHandler = require(path + '/app/controllers/optHandler.server.js');
 
 module.exports = function (app, passport) {
 
@@ -16,6 +17,7 @@ module.exports = function (app, passport) {
 
 	var clickHandler = new ClickHandler();
 	var pollHandler = new PollHandler();
+	var optHandler = new OptHandler();
 
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
@@ -65,4 +67,14 @@ module.exports = function (app, passport) {
 
 	app.route('/api/:id/polls/del/*')
 		.delete(isLoggedIn, pollHandler.resetPolls);
+	
+		
+	app.route('/api/:id/pollsopt')
+		.get(isLoggedIn, optHandler.getPolls);
+		
+	app.route('/api/:id/pollsopt/addopt/*/*')
+		.post(isLoggedIn, optHandler.addOpt);
+
+	app.route('/api/:id/pollsopt/delopt/*/*')
+		.delete(isLoggedIn, optHandler.resetOpt);
 };

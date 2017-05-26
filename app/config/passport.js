@@ -38,6 +38,7 @@ module.exports = function (passport) {
 					newUser.github.publicRepos = profile._json.public_repos;
 					newUser.nbrClicks.clicks = 0;
 					newUser.polls = [];
+					newUser.opts = [];
 
 					newUser.save(function (err) {
 						if (err) {

@@ -42,10 +42,15 @@
               	</ul>
               	<br>
             
-            <form action="/api/poll/addopt" method="post" enctype="multipart/form-data">
-              Option:<input type="text" name="option" id="option"><br>
-              <button type="submit" class="btn btn-add">New Option!</button>
-            </form><br>
+            
+              Option:<input type="text" name="option" id="opt"><br>
+              <button type="submit" class="btn btn-add" id ="addopt">New Option!</button>
+              <button type="submit" class="btn btn-delete" id ="delopt">Delete Option!</button>
+              <ul id="optlist">
+              	<!--<li></li>-->
+              	
+              	</ul>
+            <br>
             </center>
 				
 				
@@ -57,6 +62,7 @@
 		<script type="text/javascript" src="controllers/clickController.client.js"></script>
 		<script type="text/javascript" src="controllers/userController.client.js"></script>
 		<script type="text/javascript" src="controllers/pollController.client.js"></script>
+		<script type="text/javascript" src="controllers/optController.client.js"></script>
 	</body>
 
 </html>
