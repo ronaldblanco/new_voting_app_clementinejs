@@ -11,7 +11,7 @@
 function detect()
 {
 	for(var a = 0; a < radioPoll.length; a++){
-		if (radioPoll[a].checked) document.getElementById("poll").value = radioPoll[a].value;
+		if (radioPoll[a].checked == true) document.getElementById("poll").value = radioPoll[a].value;
 	}
 
 }
@@ -65,9 +65,9 @@ function detect()
               	</ul>
             <br>
             
-            <input checked="checked" name="radio" type="radio">1-10 years old
+            <!--<input checked="checked" name="radio" type="radio">1-10 years old
 						<input name="radio" type="radio">11 years old 
-						<input name="radio" type="radio">12-120 
+						<input name="radio" type="radio">12-120 -->
 
             
             </center>

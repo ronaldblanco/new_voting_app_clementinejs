@@ -10,6 +10,9 @@ Additionally, it will specify what action should be taken when one of the two bu
 (function () {
 
    //VAR
+   //var radioPoll = [];//,document.querySelector('#radioPoll');
+   //var onlyPoll = document.querySelector('#onlypoll');
+   //
    var poll = document.querySelector('#poll');
    var addButton = document.querySelector('#addpoll');
    var deleteButton = document.querySelector('#delpoll');
@@ -22,8 +25,8 @@ Additionally, it will specify what action should be taken when one of the two bu
       //var pollArray = Array.parse(data);
       pollList.innerHTML = '';
       for(var a = 0; a < pollArray.length; a++){
-         pollList.innerHTML = pollList.innerHTML +'<li><input type="radio" value="' +pollArray[a].name+ '" name="radioPoll" id="radioPoll">'+pollArray[a].name+'</li>';
-         //pollList.innerHTML = '<li>'+data+'</li>';
+         pollList.innerHTML = pollList.innerHTML +'<li><input type="radio" value="' +pollArray[a].name+ '" name="radioPoll" id="radioPoll'+a+'">'+pollArray[a].name+'</li>';
+         //radioPoll.push(document.querySelector('#radioPoll'));
       }
       
    }
@@ -47,5 +50,12 @@ Additionally, it will specify what action should be taken when one of the two bu
       });
 
    }, false);
+   
+   pollList.addEventListener('click',function(){
+      
+      //document.querySelector('#opt').value = document.querySelector('input[name = "opts"]:checked').value;
+      document.querySelector('#poll').value = document.querySelector('input[name = "radioPoll"]:checked').value;
+         
+   },false);
 
 })();
