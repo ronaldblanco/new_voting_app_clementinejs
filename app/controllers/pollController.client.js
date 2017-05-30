@@ -51,11 +51,11 @@ Additionally, it will specify what action should be taken when one of the two bu
 
    }, false);
    
-   pollList.addEventListener('click',function(){
+   /*pollList.addEventListener('click',function(){
       
       //document.querySelector('#opt').value = document.querySelector('input[name = "opts"]:checked').value;
       document.querySelector('#poll').value = document.querySelector('input[name = "radioPoll"]:checked').value;
          
-   },false);
+   },false);*/
 
 })();
