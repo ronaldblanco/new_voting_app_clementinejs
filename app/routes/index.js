@@ -94,4 +94,11 @@ module.exports = function (app, passport) {
 		
 	app.route('/api/:id/public')
 		.get(publicInfo, publicHandler.getPolls);
+		
+	app.route('/api/:id/public/chart')
+		.get(publicInfo,function (req, res) {
+			//res.sendFile(path + '/public/chart.html');
+			res.sendFile(path + '/public/chartpie.html');
+			//res.sendFile(path + '/node_modules/chart.js/samples/charts/pie.html');
+		});
 };
