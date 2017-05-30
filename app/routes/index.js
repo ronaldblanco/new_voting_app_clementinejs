@@ -4,6 +4,7 @@ var path = process.cwd();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
 var PollHandler = require(path + '/app/controllers/pollHandler.server.js');
 var OptHandler = require(path + '/app/controllers/optHandler.server.js');
+var PublicHandler = require(path + '/app/controllers/publicHandler.server.js');
 
 module.exports = function (app, passport) {
 
@@ -14,10 +15,19 @@ module.exports = function (app, passport) {
 			res.redirect('/login');
 		}
 	}
+	
+	function publicInfo (req, res, next) {
+		//if (req.isAuthenticated()) {
+			return next();
+		//} else {
+		//	res.redirect('/login');
+		//}
+	}
 
 	var clickHandler = new ClickHandler();
 	var pollHandler = new PollHandler();
 	var optHandler = new OptHandler();
+	var publicHandler = new PublicHandler();
 
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
@@ -80,4 +90,8 @@ module.exports = function (app, passport) {
 		
 	app.route('/api/:id/pollsopt/onlypoll/*')
 		.get(isLoggedIn, optHandler.getOptsOnlyPoll);
+		
+		
+	app.route('/api/:id/public')
+		.get(publicInfo, publicHandler.getPolls);
 };
