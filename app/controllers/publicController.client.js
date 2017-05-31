@@ -6,28 +6,6 @@ and making it available within the view.
 Additionally, it will specify what action should be taken when one of the two buttons are clicked.
 */
 
-
-
-(function () {
-   
-   //FOR THE CHART////////////////////
-   //var Chart = require('./public/js/Chart.bundle.js');
-   //require('./public/js/utils.js');
-   window.chartColors = {
-	red: 'rgb(255, 99, 132)',
-	orange: 'rgb(255, 159, 64)',
-	yellow: 'rgb(255, 205, 86)',
-	green: 'rgb(75, 192, 192)',
-	blue: 'rgb(54, 162, 235)',
-	purple: 'rgb(153, 102, 255)',
-	grey: 'rgb(201, 203, 207)'
-};
-window.randomScalingFactor = function() {
-	return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
-};
-var randomScalingFactor = function() {
-        return Math.round(Math.random() * 100);
-};
 var config = {
         type: 'pie',
         data: {
@@ -61,6 +39,29 @@ var config = {
             responsive: false
         }
     };
+
+
+(function () {
+   
+   //FOR THE CHART////////////////////
+   //var Chart = require('./public/js/Chart.bundle.js');
+   //require('./public/js/utils.js');
+   window.chartColors = {
+	red: 'rgb(255, 99, 132)',
+	orange: 'rgb(255, 159, 64)',
+	yellow: 'rgb(255, 205, 86)',
+	green: 'rgb(75, 192, 192)',
+	blue: 'rgb(54, 162, 235)',
+	purple: 'rgb(153, 102, 255)',
+	grey: 'rgb(201, 203, 207)'
+};
+window.randomScalingFactor = function() {
+	return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
+};
+var randomScalingFactor = function() {
+        return Math.round(Math.random() * 100);
+};
+
 /////////////////////////////
 
    //VAR
@@ -94,7 +95,7 @@ var config = {
       //cant = optArray.length;
       publicListOpt.innerHTML = '';
       for(var a = 0; a < pollArray.length; a++){
-         publicListOpt.innerHTML = publicListOpt.innerHTML +'<li><input type="radio" value="' +pollArray[a].user+'_'+pollArray[a].opt.name+'_'+pollArray[a].opt.nameopt+ '" name="publicP" id="opts'+a+'">'+pollArray[a].opt.nameopt+'</li>';
+         publicListOpt.innerHTML = publicListOpt.innerHTML +'<li><input type="radio" value="' +pollArray[a].user+'_'+pollArray[a].opt.name+'_'+pollArray[a].opt.nameopt+ '" name="publicPOpt" id="opts'+a+'">'+pollArray[a].opt.nameopt+'</li>';
          
       }
             //updateChart(data);
@@ -102,11 +103,18 @@ var config = {
    
    //Function CHART//////////////
    function updateChart (data){
+       
+       config.data.datasets.forEach(function(dataset) {
+            dataset.data = dataset.data.map(function() {
+                return randomScalingFactor();
+            });
+        });
+        window.myPie.update();
       
-      window.onload = function() {
+      /*window.onload = function() {
         //var ctx = document.getElementById("chart-area").getContext("2d");
         window.myPie = new Chart(chart, config);
-    };
+    };*/
 
     /*document.getElementById('randomizeData').addEventListener('click', function() {
         config.data.datasets.forEach(function(dataset) {
@@ -118,7 +126,7 @@ var config = {
         window.myPie.update();
     });*/
 
-    var colorNames = Object.keys(window.chartColors);
+    //var colorNames = Object.keys(window.chartColors);
     /*document.getElementById('addDataset').addEventListener('click', function() {
         var newDataset = {
             backgroundColor: [],
@@ -151,9 +159,15 @@ var config = {
    //LISTENERS
    voteB.addEventListener('click',function(){
       
-      //var poll = document.querySelector('input[name = "publicP"]:checked').value;//{'user': user.github.id,'poll':poll}
-      ajaxFunctions.ready(ajaxFunctions.ajaxRequest('POST', apiUrl+'/chart/', updateChart));
-      
+      var poll = document.querySelector('input[name = "publicP"]:checked').value;//{'user': user.github.id,'poll':poll}
+      ajaxFunctions.ready(ajaxFunctions.ajaxRequest('POST', apiUrl+'Chart/'+poll, updateChart));
+      /*config.data.datasets.forEach(function(dataset) {
+            dataset.data = dataset.data.map(function() {
+                return randomScalingFactor();
+            });
+        });
+
+        window.myPie.update();*/
          
    },false);
    
@@ -161,14 +175,21 @@ var config = {
       
       ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updatePublic));
       
-   },false);
+   },false);//Update POLLS
    
    publicList.addEventListener('click',function(){
       
       var poll = document.querySelector('input[name = "publicP"]:checked').value;//{'user': user.github.id,'poll':poll}
       ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl+"opt/"+poll, updatePublicOpt));
          
-   },false);
+   },false);//GET OPTIONS OF A POLL
+   
+   publicListOpt.addEventListener('click',function(){
+      
+      var opt = document.querySelector('input[name = "publicPOpt"]:checked').value;//{'user': user.github.id,'poll':poll}
+      ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl+"optV/"+opt, updatePublicOpt));
+         
+   },false);//VOTE FOR AN OPTION
    
 
 })();

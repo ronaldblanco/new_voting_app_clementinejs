@@ -98,7 +98,13 @@ module.exports = function (app, passport) {
 	app.route('/api/:id/publicopt/*')
 		.get(publicInfo, publicHandler.getOpts);
 		
-	app.route('/api/:id/public/vote')
+	app.route('/api/:id/publicoptV/*')
+		.get(publicInfo, publicHandler.updateOpts);
+		
+	app.route('/api/:id/publicChart/*')
+		.post(publicInfo, publicHandler.getChart);
+		
+	/*app.route('/api/:id/public/vote')
 		.post(publicInfo, publicHandler.getPolls);
 		
 	app.route('/public/chart/')
@@ -107,5 +113,5 @@ module.exports = function (app, passport) {
 			//res.sendFile(path + '/public/chart.html');
 			res.sendFile(path + '/public/chartpie.html');
 			//res.sendFile(path + '/node_modules/chart.js/samples/charts/pie.html');
-		});
+		});*/
 };
