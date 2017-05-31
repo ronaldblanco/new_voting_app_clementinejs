@@ -19,11 +19,31 @@ function PublicHandler () {
 				var final = [];
 				result.forEach(function(user){
 					user.polls.forEach(function(poll){
-						final.push(poll);
+						final.push({'user': user.github.id,'poll':poll});
 					});
 					
 				});
 				//console.log(final);
+				//result.polls.push("hola");
+				res.json(final);//Array
+			});
+	};
+	
+	this.getOpts = function (req, res) {
+		var pollName = req.originalUrl.toString().split("/:id/publicopt/")[1].split("_");
+		//console.log(pollName);
+		Users
+			.find({'github.id':pollName[0]}, { '_id': false })
+			.exec(function (err, result) {
+				if (err) { throw err; }
+				var final = [];
+				result.forEach(function(user){
+					user.opts.forEach(function(opt){
+						if(opt.name == pollName[1])final.push({'user': user.github.id,'opt':opt});
+					});
+					
+				});
+				console.log(final);
 				//result.polls.push("hola");
 				res.json(final);//Array
 			});
@@ -44,9 +64,9 @@ function PublicHandler () {
 				//res.json(result.opts);//Array
 				res.json(fresult);//Array
 			});
-	};
+	};*/
 
-	this.addOpt = function (req, res) {
+	/*this.addOpt = function (req, res) {
 		//console.log(req.originalUrl.toString().split("/add/")[1]);
 		var pollName = req.originalUrl.toString().split("/addopt/")[1].split('/')[0];
 		var optName = req.originalUrl.toString().split("/addopt/")[1].split('/')[1];

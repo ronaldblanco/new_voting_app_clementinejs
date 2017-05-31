@@ -24,7 +24,7 @@ function OptHandler () {
 	
 	this.getOptsOnlyPoll = function (req, res) {
 		var pollName = req.originalUrl.toString().split("/onlypoll/")[1];
-		console.log(pollName);
+		//console.log(pollName);
 		//console.log(req);
 		Users
 			.findOne({ 'github.id': req.user.github.id }, { '_id': false })

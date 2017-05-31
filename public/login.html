@@ -6,6 +6,8 @@
 		<title>Clementine.js - The elegant and lightweight full stack JavaScript boilerplate.</title>
 		
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+		<script src="/public/js/Chart.bundle.js"></script>
+    	<script src="/public/js/utils.js"></script>
 	</head>
 
 	<body>
@@ -23,14 +25,45 @@
 			</div>
 		</div>
 		<center>
+			
 		<div class = "container" id = "publicPolls">
 			<h3>Public Polls</h3>
-			<ul id="publiclist">
-			</ul>
-		</div>
+			<button type="submit" class="btn" id = "vote">VOTE!</button>
+			<button type="submit" class="btn" id = "back">Update Polls!</button>
+			<table width = 30%>
+				<tr>
+					<td>
+						<h4>POLLS</h4>
+					</td>
+					<td>
+						<h4>OPTIONS</h4>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<ul id="publiclist">
+						</ul>
+					</td>
+					<td>
+						<ul id="publiclistOpt">
+						</ul>
+					</td>
+				</tr>
+			</table>
+			
+		</div
+		
+		<div id="canvas-holder" style="width:60%" class="container">
+        	<canvas id="chart-area" />
+    	</div>
+		
 		</center>
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
 		<script type="text/javascript" src="controllers/publicController.client.js"></script>
+		
+	
+		
+		
 	</body>
 
 </html>

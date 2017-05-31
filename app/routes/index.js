@@ -95,7 +95,14 @@ module.exports = function (app, passport) {
 	app.route('/api/:id/public')
 		.get(publicInfo, publicHandler.getPolls);
 		
-	app.route('/api/:id/public/chart')
+	app.route('/api/:id/publicopt/*')
+		.get(publicInfo, publicHandler.getOpts);
+		
+	app.route('/api/:id/public/vote')
+		.post(publicInfo, publicHandler.getPolls);
+		
+	app.route('/public/chart/')
+		//.post(publicInfo, publicHandler.getPolls);
 		.get(publicInfo,function (req, res) {
 			//res.sendFile(path + '/public/chart.html');
 			res.sendFile(path + '/public/chartpie.html');
