@@ -102,15 +102,28 @@
         window.myPie = new Chart(ctx, config);
     };
 
-    /*document.getElementById('vote').addEventListener('click', function() {
+    document.getElementById('vote').addEventListener('click', function() {
+    	var index = -1;
         config.data.datasets.forEach(function(dataset) {
             dataset.data = dataset.data.map(function() {
-                return randomScalingFactor();
+            	index++;
+                return randomScalingFactorNew(mydata[index]);
             });
         });
+        //config.data.datasets.data = mydata;
+        config.data.datasets.backgroundColor = mybackcolors;
+        config.data.labels = mylabels;
 
+        
+        /*function sleep(miliseconds) {
+			var currentTime = new Date().getTime();
+
+			while (currentTime + miliseconds >= new Date().getTime()) {
+			}
+		}
+		sleep(1000);*/
         window.myPie.update();
-    });*/
+    });
 
     var colorNames = Object.keys(window.chartColors);
     /*document.getElementById('addDataset').addEventListener('click', function() {
