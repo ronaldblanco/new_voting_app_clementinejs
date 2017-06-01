@@ -76,7 +76,7 @@ function PublicHandler () {
 					});
 					
 				});
-				console.log(final);
+				//console.log(final);
 				//result.polls.push("hola");
 				res.json(final);//Array
 			});

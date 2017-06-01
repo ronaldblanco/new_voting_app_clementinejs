@@ -3,19 +3,37 @@
 <html>
 
 	<head>
-		<title>Clementine.js - The elegant and lightweight full stack JavaScript boilerplate.</title>
-		
-		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+			<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script> 
+    $(function(){
+      $("#includedHead").load("/public/head.html"); 
+    });
+    </script> 
+    <script> 
+    $(function(){
+      $("#includedLogo").load("/public/logo.html"); 
+    });
+    </script> 
+    <script> 
+    $(function(){
+      $("#includedFoot").load("/public/foot.html"); 
+    });
+    </script> 
+    <div id="includedHead"></div>
+    
 		<script src="/public/js/Chart.bundle.js"></script>
     	<script src="/public/js/utils.js"></script>
 	</head>
 
 	<body>
+	    <div class="container">
+	        <br>
+			<div id="includedLogo"></div>
+			
+		</div>
 		<div class="container">	
 			<div class="login">
-				<img src="/public/img/clementine_150.png" />
-				<br />
-				<p class="clementine-text">Clementine.js</p>
+				
 				<a href="/auth/github">
 					<div class="btn" id="login-btn">
 						<img src="/public/img/github_32px.png" alt="github logo" />
@@ -28,34 +46,40 @@
 			
 		<div class = "container" id = "publicPolls">
 			<h3>Public Polls</h3>
-			<button type="submit" class="btn" id = "vote">CHART!</button>
+			<button type="submit" class="btn" id = "vote">Update Chart!</button>
 			<button type="submit" class="btn" id = "back">Update Polls!</button>
-			<table width = 30%>
+			<table width = 70%>
 				<tr>
 					<td>
 						<h4>POLLS</h4>
 					</td>
 					<td>
-						<h4>OPTIONS</h4>
+						<h4>OPTIONS FOR VOTE</h4>
+					</td>
+					<td>
+						<h4>CHART STATE OF POLL</h4>
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td style="width:30%">
 						<ul id="publiclist">
 						</ul>
 					</td>
-					<td>
+					<td style="width:30%">
 						<ul id="publiclistOpt">
 						</ul>
+					</td>
+					<td style="width:30%">
+						<div id="canvas-holder">
+        					<canvas id="chart-area" />
+    					</div>
 					</td>
 				</tr>
 			</table>
 			
 		</div
 		
-		<div id="canvas-holder" style="width:60%" class="container">
-        	<canvas id="chart-area" />
-    	</div>
+		
 		
 		</center>
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
@@ -152,6 +176,9 @@
   // }
 		</script>
 		
+		<center>
+			<div id="includedFoot"></div>
+		</center>
 		
 	</body>
 
