@@ -6,12 +6,17 @@ and making it available within the view.
 Additionally, it will specify what action should be taken when one of the two buttons are clicked.
 */
 
+//var snsShare = require('snsShare');
+var messageText = '';
+var urlDir = '';
 
 (function () {
 
    //VAR
    var radioPoll; //= document.querySelector('#radioPoll');
    var radioOpt; //= document.querySelector('#opts');
+   var shareClass = document.querySelector(".share-to");
+   var share = document.querySelector("#share");
    var pollList = document.querySelector('#polllist');
    var onlyPoll = document.querySelector('#onlypoll');
    //console.log(radioPoll);
@@ -40,11 +45,18 @@ Additionally, it will specify what action should be taken when one of the two bu
 
    //LISTENERS
    addButton.addEventListener('click', function () {
-      //console.log(poll.textContent);
+      
+      //messageText = '';
       ajaxFunctions.ajaxRequest('POST', apiUrl+'/addopt/'+poll.value+'/'+opt.value/*+'/'+radioPoll*/, function () {
          ajaxFunctions.ajaxRequest('GET', apiUrl+'/onlypoll/'+poll.value, updatePollOtp);
+         
       });
-
+   urlDir = appUrl.toString().split('://')[1];   
+   messageText = "I%20did%20create%20the%20option%20"+opt.value+"%20in%20the%20Poll%20"+poll.value+".";
+   share.innerHTML = '<a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F'+urlDir+'&amp;text='+messageText+'" class="btn btn-block shareit-twitter-colors tw-share"><i class="fa fa-twitter"></i> Twitter</a>';
+   share.innerHTML = share.innerHTML + '<a href="https://plus.google.com/share?url=https%3A%2F%2F'+urlDir+'&amp;text='+messageText+'" class="btn btn-block shareit-google-plus-colors tw-share"><i class="fa fa-google-plus"></i> Google+</a>';
+   //console.log(messageText);
+   //console.log(urlDir);
    }, false);
 
    deleteButton.addEventListener('click', function () {

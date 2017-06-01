@@ -20,6 +20,17 @@
     });
     </script> 
     <div id="includedHead"></div>
+    
+    <script type="text/javascript" src="public/js/jquery.snsShare.js"></script>
+<script type="text/javascript">
+    $(document).ready( function () {
+        //$('.share-to').snsShare('message', 'url');
+        //$("#share").i
+    });
+</script>
+
+    
+    
 	</head>
 
 	<header>
@@ -64,6 +75,18 @@
               	<!--<li></li>-->
               	
               	</ul>
+              	
+              	
+              	<div class="container" id = "share">
+    
+    <!--<button class="share-to btn" data-sns="facebook">Facebook</button>
+    <button class="share-to btn" data-sns="twitter">Twitter</button>
+    <button class="share-to btn" data-sns="google+">Google+</button>
+    <button class="share-to btn" data-sns="plurk">Plurk</button>
+    <button class="share-to btn" data-sns="line">Line (Mobile only)</button>-->
+    
+				</div>
+              	
             <br>
             
             <!--<input checked="checked" name="radio" type="radio">1-10 years old
@@ -83,6 +106,48 @@
 		<script type="text/javascript" src="controllers/userController.client.js"></script>
 		<script type="text/javascript" src="controllers/pollController.client.js"></script>
 		<script type="text/javascript" src="controllers/optController.client.js"></script>
+		
+		<!--<script type="text/javascript" src="public/js/jquery.min.js"></script>
+        <script type="text/javascript" src="public/js/shareit.js"></script>-->
+		
+		<script type="text/javascript">
+			//var share = document.getElementById("share");
+			//share.innerHTML = '<a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F'+urlDir+'&amp;text='+messageText+'" class="btn btn-block shareit-twitter-colors tw-share"><i class="fa fa-twitter"></i> Twitter</a>';
+			
+			/*var options = {
+                    title: "Share/Like/Follow to Download", //Heading of Content Locker
+                    text: 'Choose Any Social Social Network from below to share our content and Download it.', //Subheading of Content Locker
+                    facebook:{
+                        url: window.location.href,  //Your Content Page Url
+                        pageId: "https://www.facebook.com/MyCodingTricks",  //Your Facebook Page Url
+                        appId: 676027382527018  //Your Facebook App ID
+                    },
+                    twitter:{
+                        via: 'mycodingtricks', //Twitter Username
+                        url: window.location.href,
+                        text: document.title
+                    },
+                    googleplus:{
+                        apikey: 'AIzaSyD_H_TgxVsG0jMy6dMTKjkhHilxIk_bQBk', //Google App API key
+                        url: window.location.href,
+                    },
+                    linkedIn:{
+                        url: window.location.href
+                    },
+                    buttons:["facebook_share","facebook_like","twitter_tweet","twitter_follow","googleplus","linkedin"],*/
+ 
+/*
+* To Enable Cookies 
+*/
+                   /*id: 5, //Give it a Unique id. It could be anything like digits.
+                   cookie: true, //Cookie is Enabled
+                   cookieExpiry: 10 //Cookie Will Expire in 10 Days
+                };
+ 
+            $(".lock").shareIt(options);*/
+			
+		</script>
+		
 		
 		<center>
 			<div id="includedFoot"></div>
