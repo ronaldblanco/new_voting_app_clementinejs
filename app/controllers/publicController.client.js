@@ -106,6 +106,17 @@ var randomScalingFactorNew = function(myVar) {
             
    }
    
+   function voteAlert (data) {
+      var pollArray = JSON.parse(data);//.pollList;
+      //cant = optArray.length;
+      publicListOpt.innerHTML = '';
+      if(pollArray != null){
+         publicListOpt.innerHTML = publicListOpt.innerHTML +'<li>Your Vote was Set Correctly!</li>';
+
+      }else publicListOpt.innerHTML = publicListOpt.innerHTML +'<li>An Error ocurred!</li>';
+            
+   }
+   
    //Function CHART//////////////
    function updateChart (data){
        var chartData = JSON.parse(data);
@@ -115,6 +126,8 @@ var randomScalingFactorNew = function(myVar) {
                     window.chartColors.yellow,
                     window.chartColors.green,
                     window.chartColors.blue,
+                    window.chartColors.purple,
+                    window.chartColors.grey,
                 ];
        mydata = [];
        mybackcolors = [];
@@ -157,7 +170,7 @@ var randomScalingFactorNew = function(myVar) {
    publicListOpt.addEventListener('click',function(){
       
       var opt = document.querySelector('input[name = "publicPOpt"]:checked').value;//{'user': user.github.id,'poll':poll}
-      ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl+"optV/"+opt, updatePublicOpt));
+      ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl+"optV/"+opt, voteAlert));
          
    },false);//VOTE FOR AN OPTION
    

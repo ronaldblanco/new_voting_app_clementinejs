@@ -46,7 +46,7 @@
 			
 		</div>
 	
-		<div class="container">
+		<div class="container table-responsive">
 			<!--<p>You have clicked the button <span id="click-nbr"></span> times.</p>
 			<br />
 			<div class="btn-container">
@@ -55,14 +55,48 @@
 				
 				
 				<br><br>-->
-			
-			<center>
-			  Poll:<input type="text" name="poll" id="poll"><br>
+				<center>
+				<table class="table table-bordered table-striped">
+				<tr class="info">
+					<td>
+						<h4>POLLS</h4>
+					</td>
+					<td>
+						<h4>OPTIONS</h4>
+					</td>
+					
+				</tr>
+				<tr class="active">
+					<td>
+						Poll:<input type="text" name="poll" id="poll"><br>
               <button type="submit" class="btn btn-add" id ="addpoll">New Poll!</button>
-              <button type="submit" class="btn btn-delete" id ="delpoll">Delete Poll!</button>
+              <button type="submit" class="btn btn-delete btn-danger" id ="delpoll">Delete Poll!</button>
               <!--<button type="submit" class="btn btn-delete" id ="onlypoll">Filter Poll!</button>-->
               <ul id="polllist">
               	<!--<li></li>-->
+              	
+              	</ul>
+					</td>
+					<td>
+						Option:<input type="text" name="option" id="opt"><br>
+              <button type="submit" class="btn btn-add" id ="addopt">New Option!</button>
+              <button type="submit" class="btn btn-delete btn-danger" id ="delopt">Delete Option!</button>
+              <ul id="optlist">
+              	<!--<li></li>-->
+              	
+              	</ul>
+					</td>
+					
+				</tr>
+				</table>
+			</center>
+			<center>
+			  <!--Poll:<input type="text" name="poll" id="poll"><br>
+              <button type="submit" class="btn btn-add" id ="addpoll">New Poll!</button>
+              <button type="submit" class="btn btn-delete" id ="delpoll">Delete Poll!</button>
+              
+              <ul id="polllist">
+              	
               	
               	</ul>
               	<br>
@@ -72,9 +106,9 @@
               <button type="submit" class="btn btn-add" id ="addopt">New Option!</button>
               <button type="submit" class="btn btn-delete" id ="delopt">Delete Option!</button>
               <ul id="optlist">
-              	<!--<li></li>-->
               	
-              	</ul>
+              	
+              	</ul>-->
               	
               	
               	<div class="container" id = "share">
