@@ -19,7 +19,7 @@ function PublicHandler () {
 				var final = [];
 				result.forEach(function(user){
 					user.polls.forEach(function(poll){
-						final.push({'user': user.github.id,'poll':poll});
+						final.push({'user': user.github.id,'userName':user.github.username,'poll':poll});
 					});
 					
 				});

@@ -89,7 +89,7 @@ var randomScalingFactorNew = function(myVar) {
       //cant = optArray.length;
       publicList.innerHTML = '';
       for(var a = 0; a < pollArray.length; a++){
-         publicList.innerHTML = publicList.innerHTML +'<li><input type="radio" value="' +pollArray[a].user+'_'+pollArray[a].poll.name+ '" name="publicP" id="opts'+a+'">'+pollArray[a].poll.name+'</li>';
+         publicList.innerHTML = publicList.innerHTML +'<li><input type="radio" value="' +pollArray[a].user+'_'+pollArray[a].poll.name+ '" name="publicP" id="opts'+a+'">'+pollArray[a].poll.name+' by '+pollArray[a].userName+'</li>';
          
       }
       
