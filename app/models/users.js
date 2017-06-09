@@ -10,6 +10,12 @@ var User = new Schema({
 		username: String,
       publicRepos: Number
 	},
+	twitter: {
+		id: String,
+		displayName: String,
+		username: String,
+      photo: String
+	},
 	polls: [{name:String}],
 	opts: [{name:String, nameopt:String, vote: Number}],
    nbrClicks: {

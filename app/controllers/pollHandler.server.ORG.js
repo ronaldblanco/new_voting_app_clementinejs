@@ -13,7 +13,7 @@ function PollHandler () {
 
 	this.getPolls = function (req, res) {
 		Users
-			.findOne({ 'twitter.id': req.user.twitter.id }, { '_id': false })
+			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
 			.exec(function (err, result) {
 				if (err) { throw err; }
 				//console.log(result);
@@ -27,7 +27,7 @@ function PollHandler () {
 		var pollName = req.originalUrl.toString().split("/add/")[1];
 		
 		Users
-			.findOneAndUpdate({ 'twitter.id': req.user.twitter.id }, { $push: { 'polls': { name:pollName} } })
+			.findOneAndUpdate({ 'github.id': req.user.github.id }, { $push: { 'polls': { name:pollName} } })
 			.exec(function (err, result) {
 					if (err) { throw err; }
 
@@ -41,7 +41,7 @@ function PollHandler () {
 		//console.log(req.originalUrl.toString().split("/del/")[1]);
 		var pollName = req.originalUrl.toString().split("/del/")[1];
 		Users
-			.findOneAndUpdate({ 'twitter.id': req.user.twitter.id }, { $pull: { 'polls': { name:pollName} } })
+			.findOneAndUpdate({ 'github.id': req.user.github.id }, { $pull: { 'polls': { name:pollName} } })
 			.exec(function (err, result) {
 					if (err) { throw err; }
 

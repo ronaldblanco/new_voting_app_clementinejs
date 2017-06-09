@@ -1,10 +1,8 @@
 'use strict';
 
-var twitterStrategy = require('passport-twitter').Strategy;
 var GitHubStrategy = require('passport-github').Strategy;
 var User = require('../models/users');
 var configAuth = require('./auth');
-var md5Hex = require('md5-hex');
 
 module.exports = function (passport) {
 	passport.serializeUser(function (user, done) {
@@ -17,14 +15,14 @@ module.exports = function (passport) {
 		});
 	});
 
-	passport.use(new twitterStrategy({
-		consumerKey: configAuth.twitterAuth.clientID,
-		consumerSecret: configAuth.twitterAuth.clientSecret,
-		callbackURL: configAuth.twitterAuth.callbackURL
+	passport.use(new GitHubStrategy({
+		clientID: configAuth.githubAuth.clientID,
+		clientSecret: configAuth.githubAuth.clientSecret,
+		callbackURL: configAuth.githubAuth.callbackURL
 	},
 	function (token, refreshToken, profile, done) {
 		process.nextTick(function () {
-			User.findOne({ 'twitter.id': profile.id }, function (err, user) {
+			User.findOne({ 'github.id': profile.id }, function (err, user) {
 				if (err) {
 					return done(err);
 				}
@@ -33,13 +31,14 @@ module.exports = function (passport) {
 					return done(null, user);
 				} else {
 					var newUser = new User();
-					//console.log(profile);
-					newUser.twitter.id = profile.id;
-					newUser.twitter.username = profile.username;
-					newUser.twitter.displayName = profile.displayName;
-					newUser.twitter.photo = profile.photos[0].value;
+
+					newUser.github.id = profile.id;
+					newUser.github.username = profile.username;
+					newUser.github.displayName = profile.displayName;
+					newUser.github.publicRepos = profile._json.public_repos;
 					newUser.nbrClicks.clicks = 0;
-					//newUser.polls.pollList = [];
+					newUser.polls = [];
+					newUser.opts = [];
 
 					newUser.save(function (err) {
 						if (err) {
@@ -52,7 +51,4 @@ module.exports = function (passport) {
 			});
 		});
 	}));
-
-	
-	
 };

@@ -19,7 +19,7 @@ function PublicHandler () {
 				var final = [];
 				result.forEach(function(user){
 					user.polls.forEach(function(poll){
-						final.push({'user': user.twitter.id,'userName':user.twitter.username,'poll':poll});
+						final.push({'user': user.github.id,'userName':user.github.username,'poll':poll});
 					});
 					
 				});
@@ -33,13 +33,13 @@ function PublicHandler () {
 		var pollName = req.originalUrl.toString().split("/:id/publicopt/")[1].split("_");
 		//console.log(pollName);
 		Users
-			.find({'twitter.id':pollName[0]}, { '_id': false })
+			.find({'github.id':pollName[0]}, { '_id': false })
 			.exec(function (err, result) {
 				if (err) { throw err; }
 				var final = [];
 				result.forEach(function(user){
 					user.opts.forEach(function(opt){
-						if(opt.name == pollName[1])final.push({'user': user.twitter.id,'opt':opt});
+						if(opt.name == pollName[1])final.push({'user': user.github.id,'opt':opt});
 					});
 					
 				});
@@ -53,7 +53,7 @@ function PublicHandler () {
 		var opt = req.originalUrl.toString().split("/:id/publicoptV/")[1].split("_");
 		//console.log(opt);
 		Users
-			.findOneAndUpdate({ 'twitter.id': opt[0], 'opts.name': opt[1], 'opts.nameopt': opt[2] }, { $inc: { 'opts.$.vote': 1 } })
+			.findOneAndUpdate({ 'github.id': opt[0], 'opts.name': opt[1], 'opts.nameopt': opt[2] }, { $inc: { 'opts.$.vote': 1 } })
 			.exec(function (err, result) {
 					if (err) { throw err; }
 					//console.log(result);
@@ -66,13 +66,13 @@ function PublicHandler () {
 		var pollName = req.originalUrl.toString().split("/publicChart/")[1].split("_");
 		//console.log(pollName);
 		Users
-			.find({'twitter.id':pollName[0]}, { '_id': false })
+			.find({'github.id':pollName[0]}, { '_id': false })
 			.exec(function (err, result) {
 				if (err) { throw err; }
 				var final = [];
 				result.forEach(function(user){
 					user.opts.forEach(function(opt){
-						if(opt.name == pollName[1])final.push({'user': user.twitter.id,'opt':opt});
+						if(opt.name == pollName[1])final.push({'user': user.github.id,'opt':opt});
 					});
 					
 				});
